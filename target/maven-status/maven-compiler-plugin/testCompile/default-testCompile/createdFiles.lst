@@ -1,0 +1,6 @@
+testcore\TestJeuService.class
+testpersistance\TestDBConfig.class
+testpersistance\TestPlante.class
+testapi\TestJeuControlleur.class
+testpersistance\TestMaps.class
+testpersistance\TestZombie.class
