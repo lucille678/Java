@@ -32,7 +32,7 @@ public class ZombieService {
         zombieDAO.mettreAJour(zombie);
     }
 
-    public void supprimer(int id) {
+    public void supprimer(long id) {
         zombieDAO.supprimer(id);
     }
 }

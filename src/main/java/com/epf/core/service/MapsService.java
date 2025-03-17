@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MapService {
+public class MapsService {
     private final MapsImplementationDAO mapDAO;
 
     @Autowired
-    public MapService(MapsImplementationDAO mapDAO) {
+    public MapsService(MapsImplementationDAO mapDAO) {
         this.mapDAO = mapDAO;
     }
 
@@ -24,7 +24,7 @@ public class MapService {
         return mapDAO.listerMaps();
     }
 
-    public int trouverParId(long id) {
+    public  Maps trouverParId(long id) {
         return mapDAO.trouverParId(id);
     }
 

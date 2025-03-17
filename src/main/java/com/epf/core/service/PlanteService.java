@@ -24,7 +24,7 @@ public class PlanteService {
         return planteDAO.listerPlantes();
     }
 
-    public Plante trouverParId(int id) {
+    public Plante trouverParId(long id) {
         return planteDAO.trouverParId(id);
     }
 
@@ -32,7 +32,7 @@ public class PlanteService {
         planteDAO.mettreAJour(plante);
     }
 
-    public void supprimer(int id) {
+    public void supprimer(long id) {
         planteDAO.supprimer(id);
     }
 }
