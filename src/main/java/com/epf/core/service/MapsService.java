@@ -24,7 +24,7 @@ public class MapService {
         return mapDAO.listerMaps();
     }
 
-    public int trouverParId(int id) {
+    public int trouverParId(long id) {
         return mapDAO.trouverParId(id);
     }
 
@@ -32,7 +32,7 @@ public class MapService {
         mapDAO.mettreAJour(map);
     }
 
-    public void supprimer(int id) {
+    public void supprimer(long id) {
         mapDAO.supprimer(id);
     }
 }
