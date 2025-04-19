@@ -10,7 +10,7 @@ public class PlanteRepo {
     private final JdbcTemplate jdbcTemplate;
 
     // Injection du JdbcTemplate
-    public PlanteRepository(JdbcTemplate jdbcTemplate) {
+    public PlanteRepo(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
