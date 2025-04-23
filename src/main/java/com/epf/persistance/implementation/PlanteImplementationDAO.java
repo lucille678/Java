@@ -1,6 +1,6 @@
 package com.epf.persistance.implementation;
 
-import com.epf.core.model.Plante;
+import com.epf.persistance.Plante;
 import com.epf.persistance.mapper.PlanteMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package testcore.testservice;
 
-import com.epf.core.model.Maps;
+import com.epf.persistance.Maps;
 import com.epf.core.service.MapsService;
 import com.epf.persistance.implementation.MapsImplementationDAO;
 import org.junit.jupiter.api.BeforeEach;

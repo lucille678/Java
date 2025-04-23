@@ -39,7 +39,7 @@ public class PlanteController {
 
     // ✅ Récupérer une plante par ID
     @GetMapping("/{id}")
-    public ResponseEntity<PlanteDTO> trouverPlanteParId(@PathVariable long id) {
+    public ResponseEntity<PlanteDTO> trouverPlanteParId(@PathVariable int id) {
         return ResponseEntity.ok(
                 PlanteDTO.fromModel(planteService.trouverParId(id))
         );
@@ -47,7 +47,7 @@ public class PlanteController {
 
     // ✅ Mettre à jour une plante
     @PutMapping("/{id}")
-    public ResponseEntity<String> mettreAJourPlante(@PathVariable long id, @RequestBody PlanteDTO planteDTO) {
+    public ResponseEntity<String> mettreAJourPlante(@PathVariable int id, @RequestBody PlanteDTO planteDTO) {
         PlanteDTO planteAModifier = planteDTO;
         planteAModifier.setId(id);
         planteService.mettreAJour(planteAModifier.toModel());

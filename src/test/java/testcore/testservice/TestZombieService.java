@@ -1,6 +1,6 @@
 package testcore.testservice;
 
-import com.epf.core.model.Zombie;
+import com.epf.persistance.Zombie;
 import com.epf.core.service.ZombieService;
 import com.epf.persistance.implementation.ZombieImplementationDAO;
 import org.junit.jupiter.api.BeforeEach;

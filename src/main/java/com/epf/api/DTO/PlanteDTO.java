@@ -1,9 +1,9 @@
 package com.epf.api.DTO;
 
-import com.epf.core.model.Plante;
+import com.epf.persistance.Plante;
 
 public class PlanteDTO {
-    private long id;
+    private int id;
     private String nom;
     private int pointDeVie;
     private int attaqueParSeconde;
@@ -15,7 +15,7 @@ public class PlanteDTO {
 
     public PlanteDTO() {}
 
-    public PlanteDTO(long id, String nom, int pointDeVie, int attaqueParSeconde, int degatAttaque,
+    public PlanteDTO(int id, String nom, int pointDeVie, int attaqueParSeconde, int degatAttaque,
                      int cout, int soleilParSeconde, String effet, String cheminImage) {
         this.id = id;
         this.nom = nom;
@@ -58,7 +58,7 @@ public class PlanteDTO {
 
     // Getters & Setters
     public long getId() { return id; }
-    public void setId(long id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
 
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }

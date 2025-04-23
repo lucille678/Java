@@ -1,6 +1,6 @@
 package com.epf.core.service;
 
-import com.epf.core.model.Zombie;
+import com.epf.persistance.Zombie;
 import com.epf.persistance.implementation.ZombieImplementationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

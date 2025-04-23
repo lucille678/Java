@@ -1,6 +1,6 @@
 package com.epf.api.DTO;
 
-import com.epf.core.model.Zombie;
+import com.epf.persistance.Zombie;
 
 public class ZombieDTO {
     private Long id_zombie;

@@ -1,6 +1,6 @@
 package com.epf.persistance.mapper;
 
-import com.epf.core.model.Plante;
+import com.epf.persistance.Plante;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ public class PlanteMapper implements RowMapper<Plante> {
     @Override
     public Plante mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Plante(
-                rs.getLong("id_plante"),
+                rs.getInt("id_plante"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
                 rs.getInt("attaque_par_seconde"),

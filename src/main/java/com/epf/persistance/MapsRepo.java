@@ -3,6 +3,7 @@ package com.epf.persistance;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository
@@ -13,24 +14,30 @@ public class MapsRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Mapper pour convertir une ligne SQL en objet Map
-    private final RowMapper<Maps> mapRowMapper = (rs, rowNum) -> new Maps(
-            rs.getInt("id"),
-            rs.getString("nom"),
-            rs.getInt("largeur"),
-            rs.getInt("hauteur")
+    // Mapper pour convertir une ligne SQL en objet Maps
+    private final RowMapper<Maps> mapsRowMapper = (rs, rowNum) -> new Maps(
+            rs.getLong("id_map"),         // correspond à l'attribut id_map
+            rs.getInt("ligne"),
+            rs.getInt("colonne"),
+            rs.getString("chemin_image")
     );
 
-    // Ajouter une map
-    public void ajouterMap(String nom, int largeur, int hauteur) {
-        String sql = "INSERT INTO map (nom, largeur, hauteur) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, nom, largeur, hauteur);
-        System.out.println("✅ Map ajoutée : " + nom);
+    // Ajouter une carte
+    public void ajouterMap(Integer ligne, Integer colonne, String chemin_image) {
+        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, ligne, colonne, chemin_image);
+        System.out.println("✅ Map ajoutée");
     }
 
-    // Lister toutes les maps
+    // Lister toutes les cartes
     public List<Maps> listerMaps() {
         String sql = "SELECT * FROM map";
-        return jdbcTemplate.query(sql, mapRowMapper);
+        return jdbcTemplate.query(sql, mapsRowMapper);
+    }
+
+    // Trouver une carte par ID
+    public Maps trouverMapParId(Long id_map) {
+        String sql = "SELECT * FROM map WHERE id_map = ?";
+        return jdbcTemplate.queryForObject(sql, mapsRowMapper, id_map);
     }
 }

@@ -35,4 +35,3 @@ public class MapsController {
         return ResponseEntity.ok(maps);
     }
 }
-

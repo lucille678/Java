@@ -1,6 +1,6 @@
 package com.epf.core.service;
 
-import com.epf.core.model.Plante;
+import com.epf.persistance.Plante;
 import com.epf.persistance.implementation.PlanteImplementationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

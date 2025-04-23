@@ -1,39 +1,44 @@
 package com.epf.api.DTO;
 
-import com.epf.core.model.Maps;
+import com.epf.persistance.Maps;
 
 public class MapsDTO {
-    private Long id;
-    private String nom;
-    private int difficulte;
+    private Long id_map;
+    private Integer ligne;
+    private Integer colonne;
+    private String chemin_image;
 
-    // Constructeur vide pour Spring
-    public MapsDTO() {
+    public MapsDTO() {}
+
+    public MapsDTO(Long id_map, Integer ligne, Integer colonne, String chemin_image) {
+        this.id_map = id_map;
+        this.ligne = ligne;
+        this.colonne = colonne;
+        this.chemin_image = chemin_image;
     }
 
-    public MapsDTO(Long id, String nom, int difficulte) {
-        this.id = id;
-        this.nom = nom;
-        this.difficulte = difficulte;
-    }
-
-    // Convertit un modèle en DTO
     public static MapsDTO fromModel(Maps map) {
-        return new MapsDTO(map.getId(), map.getNom(), map.getDifficulte());
+        return new MapsDTO(
+                map.getId_map(),
+                map.getLigne(),
+                map.getColonne(),
+                map.getChemin_image()
+        );
     }
 
-    // Convertit un DTO en modèle
     public Maps toModel() {
-        return new Maps(id, nom, difficulte);
+        return new Maps(id_map, ligne, colonne, chemin_image);
     }
 
-    // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId_map() { return id_map; }
+    public void setId_map(Long id_map) { this.id_map = id_map; }
 
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
+    public Integer getLigne() { return ligne; }
+    public void setLigne(Integer ligne) { this.ligne = ligne; }
 
-    public int getDifficulte() { return difficulte; }
-    public void setDifficulte(int difficulte) { this.difficulte = difficulte; }
+    public Integer getColonne() { return colonne; }
+    public void setColonne(Integer colonne) { this.colonne = colonne; }
+
+    public String getChemin_image() { return chemin_image; }
+    public void setChemin_image(String chemin_image) { this.chemin_image = chemin_image; }
 }

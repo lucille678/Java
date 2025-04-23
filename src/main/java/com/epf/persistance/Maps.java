@@ -1,37 +1,44 @@
 package com.epf.persistance;
 
-
 public class Maps {
-    private int id;
-    private String nom;
-    private int largeur;
-    private int hauteur;
+    private Long id_map;
+    private Integer ligne;
+    private Integer colonne;
+    private String chemin_image;
 
+    // Constructeur vide
     public Maps() {}
 
-    public Maps(int id, String nom, int largeur, int hauteur) {
-        this.id = id;
-        this.nom = nom;
-        this.largeur = largeur;
-        this.hauteur = hauteur;
+    // Constructeur avec tous les attributs
+    public Maps(Long id_map, Integer ligne, Integer colonne, String chemin_image) {
+        this.id_map = id_map;
+        this.ligne = ligne;
+        this.colonne = colonne;
+        this.chemin_image = chemin_image;
     }
 
     // Getters et Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Long getId_map() { return id_map; }
+    public void setId_map(Long id_map) { this.id_map = id_map; }
 
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
+    public Integer getLigne() { return ligne; }
+    public void setLigne(Integer ligne) { this.ligne = ligne; }
 
-    public int getLargeur() { return largeur; }
-    public void setLargeur(int largeur) { this.largeur = largeur; }
+    public Integer getColonne() { return colonne; }
+    public void setColonne(Integer colonne) { this.colonne = colonne; }
 
-    public int getHauteur() { return hauteur; }
-    public void setHauteur(int hauteur) { this.hauteur = hauteur; }
+    public String getChemin_image() { return chemin_image; }
+    public void setChemin_image(String chemin_image) { this.chemin_image = chemin_image; }
 
     @Override
     public String toString() {
-        return "Map{id=" + id + ", nom='" + nom + "', largeur=" + largeur + ", hauteur=" + hauteur + "}";
+        return "Maps{" +
+                "id_map=" + id_map +
+                ", ligne=" + ligne +
+                ", colonne=" + colonne +
+                ", chemin_image='" + chemin_image + '\'' +
+                '}';
     }
 }
+
 

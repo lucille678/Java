@@ -1,6 +1,6 @@
 package testapi.testDTO;
 
-import com.epf.core.model.Zombie;
+import com.epf.persistance.Zombie;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.epf.api.DTO.ZombieDTO;
