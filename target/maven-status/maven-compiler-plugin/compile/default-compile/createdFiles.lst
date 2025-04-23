@@ -5,7 +5,6 @@ com\epf\persistance\mapper\ZombieMapper.class
 com\epf\core\service\MapsService.class
 com\epf\persistance\PlanteRepo.class
 com\epf\persistance\Plante.class
-com\epf\config\SwaggerConfig.class
 com\epf\persistance\dao\MapsDAO.class
 com\epf\api\DTO\PlanteDTO.class
 com\epf\persistance\mapper\MapsMapper.class
@@ -22,7 +21,6 @@ com\epf\persistance\dao\ZombieDAO.class
 com\epf\persistance\mapper\PlanteMapper.class
 com\epf\core\model\Plante.class
 com\epf\persistance\dao\PlanteDAO.class
-com\epf\config\AppConfig.class
 com\epf\persistance\ZombieRepo.class
 com\epf\core\service\PlanteService.class
 com\epf\persistance\implementation\PlanteImplementationDAO.class
