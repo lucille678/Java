@@ -9,7 +9,7 @@ public class PlanteMapper implements RowMapper<Plante> {
     @Override
     public Plante mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Plante(
-                rs.getLong("id"),
+                rs.getLong("id_plante"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
                 rs.getInt("attaque_par_seconde"),
