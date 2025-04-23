@@ -11,9 +11,15 @@ public class PlanteMapper implements RowMapper<Plante> {
         return new Plante(
                 rs.getLong("id"),
                 rs.getString("nom"),
-                rs.getInt("pv"),
-                rs.getInt("attaque")
+                rs.getInt("point_de_vie"),
+                rs.getInt("attaque_par_seconde"),
+                rs.getInt("degat_attaque"),
+                rs.getInt("cout"),
+                rs.getInt("soleil_par_seconde"),
+                rs.getString("effet"),
+                rs.getString("chemin_image")
         );
     }
 }
+
 

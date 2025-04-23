@@ -1,14 +1,15 @@
 package com.epf.persistance.dao;
+
 import com.epf.persistance.Plante;
 import java.util.List;
 
 public interface PlanteDAO {
     void ajouterPlante(Plante plante);       // CREATE
     List<Plante> listerPlantes();            // READ (All)
-    Plante trouverParId(int id);             // READ (One)
+    Plante trouverParId(long id);            // READ (One)
     void mettreAJour(Plante plante);         // UPDATE
-    void supprimer(int id);                  // DELETE
+    void supprimer(long id);                 // DELETE
 
-    // Méthode spécifique : Trouver les plantes par type
+    // Méthode spécifique : Trouver les plantes par type (basée sur effet ?)
     List<Plante> trouverParType(String type);
 }

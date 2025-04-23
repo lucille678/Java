@@ -1,35 +1,117 @@
 package com.epf.persistance;
 
 public class Plante {
-    private int id;
+
+    private int id_plante;
     private String nom;
-    private int pv;
-    private int attaque;
+    private int point_de_vie;
+    private int attaque_par_seconde;
+    private int degat_attaque;
+    private int cout;
+    private int soleil_par_seconde;
+    private String effet;
+    private String chemin_image;
 
     public Plante() {} // Constructeur vide requis par Spring
 
-    public Plante(int id, String nom, int pv, int attaque) {
-        this.id = id;
+    public Plante(int id_plante, String nom, int point_de_vie, int attaque_par_seconde, int degat_attaque,
+                  int cout, int soleil_par_seconde, String effet, String chemin_image) {
+        this.id_plante = id_plante;
         this.nom = nom;
-        this.pv = pv;
-        this.attaque = attaque;
+        this.point_de_vie = point_de_vie;
+        this.attaque_par_seconde = attaque_par_seconde;
+        this.degat_attaque = degat_attaque;
+        this.cout = cout;
+        this.soleil_par_seconde = soleil_par_seconde;
+        this.effet = effet;
+        this.chemin_image = chemin_image;
     }
 
     // Getters et Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId_plante() {
+        return id_plante;
+    }
 
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
+    public void setId_plante(int id_plante) {
+        this.id_plante = id_plante;
+    }
 
-    public int getPv() { return pv; }
-    public void setPv(int pv) { this.pv = pv; }
+    public String getNom() {
+        return nom;
+    }
 
-    public int getAttaque() { return attaque; }
-    public void setAttaque(int attaque) { this.attaque = attaque; }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getPoint_de_vie() {
+        return point_de_vie;
+    }
+
+    public void setPoint_de_vie(int point_de_vie) {
+        this.point_de_vie = point_de_vie;
+    }
+
+    public int getAttaque_par_seconde() {
+        return attaque_par_seconde;
+    }
+
+    public void setAttaque_par_seconde(int attaque_par_seconde) {
+        this.attaque_par_seconde = attaque_par_seconde;
+    }
+
+    public int getDegat_attaque() {
+        return degat_attaque;
+    }
+
+    public void setDegat_attaque(int degat_attaque) {
+        this.degat_attaque = degat_attaque;
+    }
+
+    public int getCout() {
+        return cout;
+    }
+
+    public void setCout(int cout) {
+        this.cout = cout;
+    }
+
+    public int getSoleil_par_seconde() {
+        return soleil_par_seconde;
+    }
+
+    public void setSoleil_par_seconde(int soleil_par_seconde) {
+        this.soleil_par_seconde = soleil_par_seconde;
+    }
+
+    public String getEffet() {
+        return effet;
+    }
+
+    public void setEffet(String effet) {
+        this.effet = effet;
+    }
+
+    public String getChemin_image() {
+        return chemin_image;
+    }
+
+    public void setChemin_image(String chemin_image) {
+        this.chemin_image = chemin_image;
+    }
 
     @Override
     public String toString() {
-        return "Plante{id=" + id + ", nom='" + nom + "', pv=" + pv + ", attaque=" + attaque + "}";
+        return "Plante{" +
+                "id_plante=" + id_plante +
+                ", nom='" + nom + '\'' +
+                ", point_de_vie=" + point_de_vie +
+                ", attaque_par_seconde=" + attaque_par_seconde +
+                ", degat_attaque=" + degat_attaque +
+                ", cout=" + cout +
+                ", soleil_par_seconde=" + soleil_par_seconde +
+                ", effet='" + effet + '\'' +
+                ", chemin_image='" + chemin_image + '\'' +
+                '}';
     }
 }
