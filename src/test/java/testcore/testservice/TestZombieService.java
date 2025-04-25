@@ -30,14 +30,14 @@ class TestZombieService {
 
     @Test
     void testAjouterZombie() {
-        Zombie zombie = new Zombie(1L, "Zombie Rapide", 50, 10, 3);
+        Zombie zombie = new Zombie(1L, "Zombie Rapide", 90, 12, 50, 5, "path/image_zombie_rapide.jpeg", 2L);
         zombieService.ajouterZombie(zombie);
         verify(zombieDAO, times(1)).ajouterZombie(zombie);
     }
 
     @Test
     void testListerZombies() {
-        when(zombieDAO.listerZombies()).thenReturn(List.of(new Zombie(1L, "Zombie Lent", 100, 5, 1)));
+        when(zombieDAO.listerZombies()).thenReturn(List.of(new Zombie(1L, "Zombie Lent", 100, 5, 80, 1, "path/image_zombie_lent.jpeg", 2L)));
         List<Zombie> zombies = zombieService.listerZombies();
         assertEquals(1, zombies.size());
         assertEquals("Zombie Lent", zombies.get(0).getNom());

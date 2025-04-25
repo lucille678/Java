@@ -27,7 +27,7 @@ public class ZombieRepo {
 
     // Ajouter un zombie
     public void ajouterZombie(String nom, int point_de_vie, int attaque_par_seconde, int degat_attaque,
-                              int vitesse_de_deplacement, String chemin_image, Long id_map) {
+                              int vitesse_de_deplacement, String chemin_image, long id_map) {
         String sql = "INSERT INTO zombie (nom, point_de_vie, attaque_par_seconde, degat_attaque, " +
                 "vitesse_de_deplacement, chemin_image, id_map) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, nom, point_de_vie, attaque_par_seconde, degat_attaque,

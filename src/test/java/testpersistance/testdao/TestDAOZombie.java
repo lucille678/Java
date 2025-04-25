@@ -14,14 +14,14 @@ public class TestDAOZombie {
         ZombieDAO zombieDao = context.getBean(ZombieDAO.class);
 
         // Ajouter un zombie
-        Zombie zombie = new Zombie(0, "Zombie Footballeur", 150, 30, 5);
+        Zombie zombie = new Zombie(0L, "Zombie Footballeur", 150, 30, 60, 5, "path/image_zombie_footballer.jpeg", 1L);
         zombieDao.ajouterZombie(zombie);
 
         // Lister tous les zombies
         System.out.println("🧟‍♂️ Tous les zombies : " + zombieDao.listerZombies());
 
         // Récupérer un zombie par ID
-        Zombie foundZombie = zombieDao.trouverParId(1);
+        Zombie foundZombie = zombieDao.trouverParId(1L);
         System.out.println("🔍 Zombie trouvé : " + foundZombie);
 
         context.close();

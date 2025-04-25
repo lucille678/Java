@@ -48,8 +48,8 @@ public class Zombie {
     public String getChemin_image() { return chemin_image; }
     public void setChemin_image(String chemin_image) { this.chemin_image = chemin_image; }
 
-    public Long getId_map() { return id_map; }
-    public void setId_map(Long id_map) { this.id_map = id_map; }
+    public long getId_map() { return id_map; }
+    public void setId_map(long id_map) { this.id_map = id_map; }
 
     @Override
     public String toString() {
