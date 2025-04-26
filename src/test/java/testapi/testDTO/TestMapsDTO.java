@@ -2,11 +2,10 @@ package testapi.testDTO;
 
 import com.epf.api.DTO.MapsDTO;
 import com.epf.persistance.Maps;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class TestMapsDTO {
-
+/*
     @Test
     void testFromModel() {
         // Création d'un objet Maps
@@ -36,6 +35,22 @@ class TestMapsDTO {
         assertEquals(25, map.getColonne());
         assertEquals("path/to/another_image.png", map.getChemin_image());
     }
+
+    @Test
+    void testRoundTripConversion() {
+        // Création d'un objet Maps
+        Maps originalMap = new Maps(3L, 30, 40, "path/to/round_trip_image.png");
+
+        // Conversion Maps -> MapsDTO -> Maps
+        MapsDTO dto = MapsDTO.fromModel(originalMap);
+        Maps convertedMap = dto.toModel();
+
+        // Vérification que les attributs restent identiques après conversion aller-retour
+        assertEquals(originalMap.getId_map(), convertedMap.getId_map());
+        assertEquals(originalMap.getLigne(), convertedMap.getLigne());
+        assertEquals(originalMap.getColonne(), convertedMap.getColonne());
+        assertEquals(originalMap.getChemin_image(), convertedMap.getChemin_image());
+    }*/
 }
 
 

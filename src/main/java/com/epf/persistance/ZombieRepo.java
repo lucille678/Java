@@ -3,6 +3,8 @@ package com.epf.persistance;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -15,19 +17,19 @@ public class ZombieRepo {
 
     // Mapper pour convertir une ligne SQL en objet Zombie
     private final RowMapper<Zombie> zombieRowMapper = (rs, rowNum) -> new Zombie(
-            rs.getLong("id_zombie"), // correspond à l'attribut id_zombie
+            rs.getLong("id_zombie"),
             rs.getString("nom"),
             rs.getInt("point_de_vie"),
-            rs.getInt("attaque_par_seconde"),
+            rs.getBigDecimal("attaque_par_seconde"),
             rs.getInt("degat_attaque"),
-            rs.getInt("vitesse_de_deplacement"),
+            rs.getBigDecimal("vitesse_de_deplacement"),
             rs.getString("chemin_image"),
-            rs.getLong("id_map") // Peut être null
+            rs.getObject("id_map") != null ? rs.getLong("id_map") : null
     );
 
     // Ajouter un zombie
-    public void ajouterZombie(String nom, int point_de_vie, int attaque_par_seconde, int degat_attaque,
-                              int vitesse_de_deplacement, String chemin_image, long id_map) {
+    public void ajouterZombie(String nom, int point_de_vie, BigDecimal attaque_par_seconde, int degat_attaque,
+                              BigDecimal vitesse_de_deplacement, String chemin_image, Long id_map) {
         String sql = "INSERT INTO zombie (nom, point_de_vie, attaque_par_seconde, degat_attaque, " +
                 "vitesse_de_deplacement, chemin_image, id_map) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, nom, point_de_vie, attaque_par_seconde, degat_attaque,
@@ -43,8 +45,14 @@ public class ZombieRepo {
 
     // Trouver un zombie par ID
     public Zombie trouverZombieParId(int id) {
-        String sql = "SELECT * FROM zombie WHERE id_zombie = ?";
-        return jdbcTemplate.queryForObject(sql, zombieRowMapper, id);
+        try {
+            String sql = "SELECT * FROM zombie WHERE id_zombie = ?";
+            return jdbcTemplate.queryForObject(sql, zombieRowMapper, id);
+        } catch (Exception e) {
+            System.err.println("❌ Erreur lors de la recherche du zombie avec ID : " + id);
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

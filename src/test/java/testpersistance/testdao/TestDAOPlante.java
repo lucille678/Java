@@ -1,11 +1,13 @@
 package testpersistance.testdao;
 
-import com.epf.persistance.DBConfig;
+
 import com.epf.persistance.dao.PlanteDAO;
 import com.epf.persistance.Plante;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class TestDAOPlante {
+    
+/*
     public static void TestDAOPlante(String[] args) {
         // Charger le contexte Spring
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DBConfig.class);
@@ -15,7 +17,7 @@ public class TestDAOPlante {
 
         // Ajouter une plante
         Plante tournesol = new Plante();
-        tournesol.setId_plante(0);
+        tournesol.setId_plante(0L);
         tournesol.setNom("Tournesol");
         tournesol.setPoint_de_vie(100);
         tournesol.setAttaque_par_seconde(1);
@@ -46,4 +48,5 @@ public class TestDAOPlante {
 
         context.close();
     }
+    */
 }

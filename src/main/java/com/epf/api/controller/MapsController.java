@@ -20,18 +20,24 @@ public class MapsController {
         this.mapsService = mapsService;
     }
 
-    @PostMapping
-    public ResponseEntity<String> ajouterMap(@RequestBody MapsDTO mapsDTO) {
-        mapsService.ajouterMap(mapsDTO.toModel());
-        return ResponseEntity.ok("Map ajoutée avec succès !");
+    @GetMapping("/{id}")
+    public ResponseEntity<MapsDTO> trouverMapParId(@PathVariable Long id) { // Correction : Utilisation de Long
+        try {
+            return ResponseEntity.ok(
+                    MapsDTO.fromModel(mapsService.trouverParId(id))
+            );
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping
-    public ResponseEntity<List<MapsDTO>> listerMaps() {
-        List<MapsDTO> maps = mapsService.listerMaps()
-                .stream()
-                .map(MapsDTO::fromModel)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(maps);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> supprimerMap(@PathVariable Long id) { // Correction : Utilisation de Long
+        try {
+            mapsService.supprimer(id);
+            return ResponseEntity.ok("Map supprimée avec succès !");
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

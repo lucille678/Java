@@ -3,6 +3,7 @@ package com.epf.persistance.mapper;
 import com.epf.persistance.Zombie;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -13,11 +14,11 @@ public class ZombieMapper implements RowMapper<Zombie> {
                 rs.getLong("id_zombie"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
-                rs.getInt("attaque_par_seconde"),
+                rs.getBigDecimal("attaque_par_seconde"), // Correction ici
                 rs.getInt("degat_attaque"),
-                rs.getInt("vitesse_de_deplacement"),
+                rs.getBigDecimal("vitesse_de_deplacement"), // Correction ici
                 rs.getString("chemin_image"),
-                rs.getLong("id_map") // Peut être null
+                rs.getObject("id_map") != null ? rs.getLong("id_map") : null // Gestion de la valeur null
         );
     }
 }

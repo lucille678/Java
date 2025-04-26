@@ -1,21 +1,23 @@
 package com.epf.persistance;
 
+import java.math.BigDecimal;
+
 public class Plante {
 
-    private int id_plante;
+    private long id_plante;
     private String nom;
     private int point_de_vie;
-    private int attaque_par_seconde;
+    private BigDecimal attaque_par_seconde;
     private int degat_attaque;
     private int cout;
-    private int soleil_par_seconde;
+    private BigDecimal soleil_par_seconde;
     private String effet;
     private String chemin_image;
 
     public Plante() {} // Constructeur vide requis par Spring
 
-    public Plante(int id_plante, String nom, int point_de_vie, int attaque_par_seconde, int degat_attaque,
-                  int cout, int soleil_par_seconde, String effet, String chemin_image) {
+    public Plante(long id_plante, String nom, int point_de_vie, BigDecimal attaque_par_seconde, int degat_attaque,
+                  int cout, BigDecimal soleil_par_seconde, String effet, String chemin_image) {
         this.id_plante = id_plante;
         this.nom = nom;
         this.point_de_vie = point_de_vie;
@@ -28,7 +30,7 @@ public class Plante {
     }
 
     // Getters et Setters
-    public int getId_plante() {
+    public long getId_plante() {
         return id_plante;
     }
 
@@ -52,11 +54,11 @@ public class Plante {
         this.point_de_vie = point_de_vie;
     }
 
-    public int getAttaque_par_seconde() {
+    public BigDecimal getAttaque_par_seconde() {
         return attaque_par_seconde;
     }
 
-    public void setAttaque_par_seconde(int attaque_par_seconde) {
+    public void setAttaque_par_seconde(BigDecimal attaque_par_seconde) {
         this.attaque_par_seconde = attaque_par_seconde;
     }
 
@@ -76,11 +78,11 @@ public class Plante {
         this.cout = cout;
     }
 
-    public int getSoleil_par_seconde() {
+    public BigDecimal getSoleil_par_seconde() {
         return soleil_par_seconde;
     }
 
-    public void setSoleil_par_seconde(int soleil_par_seconde) {
+    public void setSoleil_par_seconde(BigDecimal soleil_par_seconde) {
         this.soleil_par_seconde = soleil_par_seconde;
     }
 

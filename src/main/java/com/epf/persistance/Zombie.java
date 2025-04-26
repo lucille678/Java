@@ -1,21 +1,23 @@
 package com.epf.persistance;
 
+import java.math.BigDecimal;
+
 public class Zombie {
     private Long id_zombie;
     private String nom;
     private Integer point_de_vie;
-    private Integer attaque_par_seconde;
+    private BigDecimal attaque_par_seconde; // Changement ici
     private Integer degat_attaque;
-    private Integer vitesse_de_deplacement;
+    private BigDecimal vitesse_de_deplacement; // Changement ici
     private String chemin_image;
-    private Long id_map; // peut être null
+    private Long id_map; // Peut être null, donc Long
 
     // Constructeur vide
     public Zombie() {}
 
     // Constructeur avec tous les attributs
-    public Zombie(Long id_zombie, String nom, Integer point_de_vie, Integer attaque_par_seconde,
-                  Integer degat_attaque, Integer vitesse_de_deplacement, String chemin_image, Long id_map) {
+    public Zombie(Long id_zombie, String nom, Integer point_de_vie, BigDecimal attaque_par_seconde,
+                  Integer degat_attaque, BigDecimal vitesse_de_deplacement, String chemin_image, Long id_map) {
         this.id_zombie = id_zombie;
         this.nom = nom;
         this.point_de_vie = point_de_vie;
@@ -36,20 +38,20 @@ public class Zombie {
     public Integer getPoint_de_vie() { return point_de_vie; }
     public void setPoint_de_vie(Integer point_de_vie) { this.point_de_vie = point_de_vie; }
 
-    public Integer getAttaque_par_seconde() { return attaque_par_seconde; }
-    public void setAttaque_par_seconde(Integer attaque_par_seconde) { this.attaque_par_seconde = attaque_par_seconde; }
+    public BigDecimal getAttaque_par_seconde() { return attaque_par_seconde; }
+    public void setAttaque_par_seconde(BigDecimal attaque_par_seconde) { this.attaque_par_seconde = attaque_par_seconde; }
 
     public Integer getDegat_attaque() { return degat_attaque; }
     public void setDegat_attaque(Integer degat_attaque) { this.degat_attaque = degat_attaque; }
 
-    public Integer getVitesse_de_deplacement() { return vitesse_de_deplacement; }
-    public void setVitesse_de_deplacement(Integer vitesse_de_deplacement) { this.vitesse_de_deplacement = vitesse_de_deplacement; }
+    public BigDecimal getVitesse_de_deplacement() { return vitesse_de_deplacement; }
+    public void setVitesse_de_deplacement(BigDecimal vitesse_de_deplacement) { this.vitesse_de_deplacement = vitesse_de_deplacement; }
 
     public String getChemin_image() { return chemin_image; }
     public void setChemin_image(String chemin_image) { this.chemin_image = chemin_image; }
 
-    public long getId_map() { return id_map; }
-    public void setId_map(long id_map) { this.id_map = id_map; }
+    public Long getId_map() { return id_map; }
+    public void setId_map(Long id_map) { this.id_map = id_map; }
 
     @Override
     public String toString() {

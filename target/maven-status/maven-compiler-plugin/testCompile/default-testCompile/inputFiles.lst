@@ -1,3 +1,4 @@
+C:\epf\4A\java\projet\projet_pvz\src\test\java\testapi\testcontroller\TestPlanteController.java
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testapi\testDTO\TestMapsDTO.java
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testapi\testDTO\TestZombieDTO.java
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testcore\testservice\TestMapsService.java
@@ -9,4 +10,5 @@ C:\epf\4A\java\projet\projet_pvz\src\test\java\testpersistance\testdao\TestDAOZo
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testpersistance\TestDBConfig.java
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testpersistance\TestMaps.java
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testpersistance\TestPlante.java
+C:\epf\4A\java\projet\projet_pvz\src\test\java\testpersistance\TestPlanteRepo.java
 C:\epf\4A\java\projet\projet_pvz\src\test\java\testpersistance\TestZombie.java

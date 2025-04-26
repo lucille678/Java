@@ -14,30 +14,41 @@ public class MapsRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Mapper pour convertir une ligne SQL en objet Maps
+    // 🎯 RowMapper pour convertir une ligne SQL en objet Maps
     private final RowMapper<Maps> mapsRowMapper = (rs, rowNum) -> new Maps(
-            rs.getLong("id_map"),         // correspond à l'attribut id_map
+            rs.getLong("id_map"), // Correction : Utilisation de getLong pour id_map
             rs.getInt("ligne"),
             rs.getInt("colonne"),
             rs.getString("chemin_image")
     );
 
-    // Ajouter une carte
-    public void ajouterMap(Integer ligne, Integer colonne, String chemin_image) {
-        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, ligne, colonne, chemin_image);
-        System.out.println("✅ Map ajoutée");
+    // ✅ Ajouter une map
+    public void ajouterMap(int ligne, int colonne, String cheminImage) {
+        String sql = "INSERT INTO maps (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, ligne, colonne, cheminImage);
     }
 
-    // Lister toutes les cartes
+    // ✅ Lister toutes les maps
     public List<Maps> listerMaps() {
-        String sql = "SELECT * FROM map";
+        String sql = "SELECT * FROM maps";
         return jdbcTemplate.query(sql, mapsRowMapper);
     }
 
-    // Trouver une carte par ID
+    // ✅ Trouver une map par ID
     public Maps trouverMapParId(Long id_map) {
-        String sql = "SELECT * FROM map WHERE id_map = ?";
+        String sql = "SELECT * FROM maps WHERE id_map = ?";
         return jdbcTemplate.queryForObject(sql, mapsRowMapper, id_map);
+    }
+
+    // ✅ Mettre à jour une map
+    public void mettreAJourMap(Long id_map, int ligne, int colonne, String cheminImage) {
+        String sql = "UPDATE maps SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        jdbcTemplate.update(sql, ligne, colonne, cheminImage, id_map);
+    }
+
+    // ✅ Supprimer une map
+    public void supprimerMap(Long id_map) {
+        String sql = "DELETE FROM maps WHERE id_map = ?";
+        jdbcTemplate.update(sql, id_map);
     }
 }

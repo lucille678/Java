@@ -23,6 +23,15 @@ public class PlanteController {
     // ✅ Ajouter une plante
     @PostMapping
     public ResponseEntity<String> ajouterPlante(@RequestBody PlanteDTO planteDTO) {
+        if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
+            return ResponseEntity.badRequest().body("Le nom de la plante est obligatoire.");
+        }
+        if (planteDTO.getPointDeVie() <= 0) {
+            return ResponseEntity.badRequest().body("Les points de vie doivent être supérieurs à 0.");
+        }
+        if (planteDTO.getCout() <= 0) {
+            return ResponseEntity.badRequest().body("Le coût doit être supérieur à 0.");
+        }
         planteService.ajouterPlante(planteDTO.toModel());
         return ResponseEntity.ok("Plante ajoutée avec succès !");
     }
@@ -40,24 +49,40 @@ public class PlanteController {
     // ✅ Récupérer une plante par ID
     @GetMapping("/{id}")
     public ResponseEntity<PlanteDTO> trouverPlanteParId(@PathVariable int id) {
-        return ResponseEntity.ok(
-                PlanteDTO.fromModel(planteService.trouverParId(id))
-        );
+        try {
+            return ResponseEntity.ok(
+                    PlanteDTO.fromModel(planteService.trouverParId(id))
+            );
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // ✅ Mettre à jour une plante
     @PutMapping("/{id}")
-    public ResponseEntity<String> mettreAJourPlante(@PathVariable int id, @RequestBody PlanteDTO planteDTO) {
-        PlanteDTO planteAModifier = planteDTO;
-        planteAModifier.setId(id);
-        planteService.mettreAJour(planteAModifier.toModel());
+    public ResponseEntity<String> mettreAJourPlante(@PathVariable long id, @RequestBody PlanteDTO planteDTO) {
+        if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
+            return ResponseEntity.badRequest().body("Le nom de la plante est obligatoire.");
+        }
+        if (planteDTO.getPointDeVie() <= 0) {
+            return ResponseEntity.badRequest().body("Les points de vie doivent être supérieurs à 0.");
+        }
+        if (planteDTO.getCout() <= 0) {
+            return ResponseEntity.badRequest().body("Le coût doit être supérieur à 0.");
+        }
+        planteDTO.setId(id);
+        planteService.mettreAJour(planteDTO.toModel());
         return ResponseEntity.ok("Plante mise à jour avec succès !");
     }
 
     // ✅ Supprimer une plante
     @DeleteMapping("/{id}")
     public ResponseEntity<String> supprimerPlante(@PathVariable long id) {
-        planteService.supprimer(id);
-        return ResponseEntity.ok("Plante supprimée avec succès !");
+        try {
+            planteService.supprimer(id);
+            return ResponseEntity.ok("Plante supprimée avec succès !");
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

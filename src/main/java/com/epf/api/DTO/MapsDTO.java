@@ -3,7 +3,7 @@ package com.epf.api.DTO;
 import com.epf.persistance.Maps;
 
 public class MapsDTO {
-    private Long id_map;
+    private Long id_map; // Correction : Utilisation de Long
     private Integer ligne;
     private Integer colonne;
     private String chemin_image;
@@ -27,9 +27,15 @@ public class MapsDTO {
     }
 
     public Maps toModel() {
-        return new Maps(id_map, ligne, colonne, chemin_image);
+        return new Maps(
+                id_map,
+                ligne,
+                colonne,
+                chemin_image
+        );
     }
 
+    // Getters et Setters
     public Long getId_map() { return id_map; }
     public void setId_map(Long id_map) { this.id_map = id_map; }
 

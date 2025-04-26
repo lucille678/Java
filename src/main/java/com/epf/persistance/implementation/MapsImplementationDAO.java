@@ -1,49 +1,56 @@
 package com.epf.persistance.implementation;
 
 import com.epf.persistance.Maps;
-import com.epf.persistance.mapper.MapsMapper;
+import com.epf.persistance.dao.MapsDAO;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository
-public class MapsImplementationDAO {
+public class MapsImplementationDAO implements MapsDAO {
+
     private final JdbcTemplate jdbcTemplate;
 
     public MapsImplementationDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // 🔹 Ajouter une map
+    private final RowMapper<Maps> mapsRowMapper = (rs, rowNum) -> new Maps(
+            rs.getLong("id_map"), // Correction : Utilisation de getLong
+            rs.getInt("ligne"),
+            rs.getInt("colonne"),
+            rs.getString("chemin_image")
+    );
+
+    @Override
     public void ajouterMap(Maps map) {
-        // Mise à jour de la requête pour inclure tous les champs
-        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO maps (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, map.getLigne(), map.getColonne(), map.getChemin_image());
     }
 
-    // 🔹 Récupérer toutes les maps
+    @Override
     public List<Maps> listerMaps() {
-        String sql = "SELECT * FROM map";
-        // Utilisation du MapMapper pour récupérer toutes les maps
-        return jdbcTemplate.query(sql, new MapsMapper());
+        String sql = "SELECT * FROM maps";
+        return jdbcTemplate.query(sql, mapsRowMapper);
     }
 
-    // 🔹 Trouver une map par ID
-    public Maps trouverParId(Long id) {
-        String sql = "SELECT * FROM map WHERE id_map = ?";  // Assure-toi que la table utilise 'id_map' comme colonne
-        return jdbcTemplate.queryForObject(sql, new MapsMapper(), id);
+    @Override
+    public Maps trouverParId(long id) { // Correction : Utilisation de long
+        String sql = "SELECT * FROM maps WHERE id_map = ?";
+        return jdbcTemplate.queryForObject(sql, mapsRowMapper, id);
     }
 
-    // 🔹 Mettre à jour une map
+    @Override
     public void mettreAJour(Maps map) {
-        // Mise à jour de la requête SQL pour mettre à jour les nouveaux champs
-        String sql = "UPDATE map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        String sql = "UPDATE maps SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
         jdbcTemplate.update(sql, map.getLigne(), map.getColonne(), map.getChemin_image(), map.getId_map());
     }
 
-    // 🔹 Supprimer une map
-    public void supprimer(Long id) {
-        String sql = "DELETE FROM map WHERE id_map = ?";  // Utilisation de 'id_map' pour la suppression
+    @Override
+    public void supprimer(long id) { // Correction : Utilisation de long
+        String sql = "DELETE FROM maps WHERE id_map = ?";
         jdbcTemplate.update(sql, id);
     }
 }

@@ -3,22 +3,10 @@ package testcore.testservice;
 import com.epf.persistance.Maps;
 import com.epf.core.service.MapsService;
 import com.epf.persistance.implementation.MapsImplementationDAO;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-
-import java.util.List;
-import java.util.Optional;
-
-import static javax.management.Query.times;
-//import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class TestMapsService {
+    /*
 
     @Mock
     private MapsImplementationDAO mapDAO;
@@ -30,36 +18,40 @@ class TestMapsService {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-}
-/*
+
     @Test
     void testAjouterMap() {
-        Maps map = new Maps(1L, "Forêt Sombre", 3);
+        Maps map = new Maps(1L, 5, 5, "path/image_map.jpeg");
         mapsService.ajouterMap(map);
         verify(mapDAO, times(1)).ajouterMap(map);
     }
 
     @Test
     void testListerMaps() {
-        when(mapDAO.listerMaps()).thenReturn(List.of(new Maps(1L, "Désert", 2)));
+        when(mapDAO.listerMaps()).thenReturn(List.of(
+                new Maps(1L, 5, 5, "path/image_map_1.jpeg"),
+                new Maps(2L, 6, 6, "path/image_map_2.jpeg")
+        ));
+
         List<Maps> maps = mapsService.listerMaps();
-        assertEquals(1, maps.size());
-        assertEquals("Désert", maps.get(0).getNom());
+        assertEquals(2, maps.size());
+        assertEquals(5, maps.get(0).getLigne());
+        assertEquals(6, maps.get(1).getColonne());
     }
 
     @Test
     void testTrouverParId() {
-        when(mapDAO.trouverParId(1L)).thenReturn(new Maps(1L, "Jungle", 4));
+        when(mapDAO.trouverParId(1)).thenReturn(new Maps(1L, 5, 5, "path/image_map.jpeg"));
+
         Maps map = mapsService.trouverParId(1L);
         assertNotNull(map);
-        assertEquals("Jungle", map.getNom());
+        assertEquals(5, map.getLigne());
+        assertEquals("path/image_map.jpeg", map.getChemin_image());
     }
-
-
 
     @Test
     void testMettreAJour() {
-        Maps map = new Maps(1L, "Plaine", 1);
+        Maps map = new Maps(1L, 7, 7, "path/image_map_updated.jpeg");
         mapsService.mettreAJour(map);
         verify(mapDAO, times(1)).mettreAJour(map);
     }
@@ -67,7 +59,7 @@ class TestMapsService {
     @Test
     void testSupprimer() {
         mapsService.supprimer(1L);
-        verify(mapDAO, times(1)).supprimer(1L);
+        verify(mapDAO, times(1)).supprimer(1);
     }
+    */
 }
-*/

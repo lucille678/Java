@@ -20,12 +20,20 @@ public class ZombieController {
         this.zombieService = zombieService;
     }
 
+    // Ajouter un zombie
     @PostMapping
     public ResponseEntity<String> ajouterZombie(@RequestBody ZombieDTO zombieDTO) {
+        if (zombieDTO.getNom() == null || zombieDTO.getNom().isEmpty()) {
+            return ResponseEntity.badRequest().body("Le nom du zombie est obligatoire.");
+        }
+        if (zombieDTO.getPoint_de_vie() == null || zombieDTO.getPoint_de_vie() <= 0) {
+            return ResponseEntity.badRequest().body("Les points de vie doivent être supérieurs à 0.");
+        }
         zombieService.ajouterZombie(zombieDTO.toModel());
         return ResponseEntity.ok("Zombie ajouté avec succès !");
     }
 
+    // Lister tous les zombies
     @GetMapping
     public ResponseEntity<List<ZombieDTO>> listerZombies() {
         List<ZombieDTO> zombies = zombieService.listerZombies()
