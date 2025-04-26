@@ -1,5 +1,7 @@
 package com.epf.api.controller;
 
+import com.epf.core.service.ZombieService;
+import com.epf.persistance.Zombie;
 import com.epf.core.service.MapsService;
 import com.epf.api.DTO.MapsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,12 @@ import java.util.stream.Collectors;
 public class MapsController {
 
     private final MapsService mapsService;
+    private final ZombieService zombieService;
 
     @Autowired
-    public MapsController(MapsService mapsService) {
+    public MapsController(MapsService mapsService, ZombieService zombieService) {
         this.mapsService = mapsService;
+        this.zombieService = zombieService;
     }
 
     // ✅ Ajouter une map
@@ -76,22 +80,25 @@ public class MapsController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> supprimerMap(@PathVariable("id") Long id) {
         try {
-            // Vérifier d'abord si la map existe
+            // Vérifier si la map existe
             if (mapsService.trouverParId(id) == null) {
                 return ResponseEntity.notFound().build();
             }
             
             try {
-                mapsService.supprimer(id);
-                return ResponseEntity.ok("Map supprimée avec succès !");
-            } catch (Exception e) {
-                // Check for foreign key constraint violation
-                if (e.getMessage().contains("foreign key constraint")) {
-                    return ResponseEntity.status(409)  // HTTP 409 Conflict
-                        .body("Impossible de supprimer la map car elle est utilisée par des zombies. " +
-                            "Supprimez d'abord les zombies associés.");
+                // Supprimer d'abord tous les zombies associés à cette map
+                List<Zombie> zombiesAssocies = zombieService.trouverParMap(id);
+                for (Zombie zombie : zombiesAssocies) {
+                    zombieService.supprimer(zombie.getId_zombie());
                 }
-                throw e;  // Re-throw if it's a different error
+                
+                // Puis supprimer la map
+                mapsService.supprimer(id);
+                return ResponseEntity.ok("Map et zombies associés supprimés avec succès !");
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(500)
+                    .body("Erreur lors de la suppression : " + e.getMessage());
             }
         } catch (Exception e) {
             e.printStackTrace();

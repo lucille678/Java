@@ -48,6 +48,11 @@ public class ZombieService {
         }
     }
 
+    // Trouver les zombies par map
+    public List<Zombie> trouverParMap(Long mapId) {
+        return zombieDAO.listerZombiesParMap(mapId);  
+    }
+
     // Mettre à jour un zombie
     public void mettreAJour(Zombie zombie) {
         if (zombie.getId_zombie() == null) {

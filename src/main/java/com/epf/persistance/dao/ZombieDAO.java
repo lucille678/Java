@@ -9,8 +9,5 @@ public interface ZombieDAO {
     Zombie trouverParId(Long id);              // READ (One) avec Long pour l'ID
     void mettreAJour(Zombie zombie);           // UPDATE
     void supprimer(Long id);                   // DELETE
-
-    // Récupérer les zombies par map_id
     List<Zombie> listerZombiesParMap(Long mapId); // ID_MAP est un Long
 }
-

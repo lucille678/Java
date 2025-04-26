@@ -81,8 +81,11 @@ public class ZombieImplementationDAO implements ZombieDAO {
     // Lister les zombies par map_id
     @Override
     public List<Zombie> listerZombiesParMap(Long mapId) {
-        String sql = "SELECT * FROM zombie WHERE id_map = ?";
-        return jdbcTemplate.query(sql, new ZombieMapper(), mapId);
+        return jdbcTemplate.query(
+            "SELECT * FROM zombie WHERE id_map = ?",
+            new Object[]{mapId},
+            new ZombieMapper()
+        );
     }
 }
 
