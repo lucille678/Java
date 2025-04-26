@@ -26,31 +26,31 @@ public class MapsImplementationDAO implements MapsDAO {
 
     @Override
     public void ajouterMap(Maps map) {
-        String sql = "INSERT INTO maps (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, map.getLigne(), map.getColonne(), map.getChemin_image());
     }
 
     @Override
     public List<Maps> listerMaps() {
-        String sql = "SELECT * FROM maps";
+        String sql = "SELECT * FROM map";
         return jdbcTemplate.query(sql, mapsRowMapper);
     }
 
     @Override
     public Maps trouverParId(long id) { // Correction : Utilisation de long
-        String sql = "SELECT * FROM maps WHERE id_map = ?";
+        String sql = "SELECT * FROM map WHERE id_map = ?";
         return jdbcTemplate.queryForObject(sql, mapsRowMapper, id);
     }
 
     @Override
     public void mettreAJour(Maps map) {
-        String sql = "UPDATE maps SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        String sql = "UPDATE map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
         jdbcTemplate.update(sql, map.getLigne(), map.getColonne(), map.getChemin_image(), map.getId_map());
     }
 
     @Override
     public void supprimer(long id) { // Correction : Utilisation de long
-        String sql = "DELETE FROM maps WHERE id_map = ?";
+        String sql = "DELETE FROM map WHERE id_map = ?";
         jdbcTemplate.update(sql, id);
     }
 }

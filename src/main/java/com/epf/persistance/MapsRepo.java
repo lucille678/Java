@@ -24,31 +24,31 @@ public class MapsRepo {
 
     // ✅ Ajouter une map
     public void ajouterMap(int ligne, int colonne, String cheminImage) {
-        String sql = "INSERT INTO maps (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, ligne, colonne, cheminImage);
     }
 
     // ✅ Lister toutes les maps
     public List<Maps> listerMaps() {
-        String sql = "SELECT * FROM maps";
+        String sql = "SELECT * FROM map";
         return jdbcTemplate.query(sql, mapsRowMapper);
     }
 
     // ✅ Trouver une map par ID
     public Maps trouverMapParId(Long id_map) {
-        String sql = "SELECT * FROM maps WHERE id_map = ?";
+        String sql = "SELECT * FROM map WHERE id_map = ?";
         return jdbcTemplate.queryForObject(sql, mapsRowMapper, id_map);
     }
 
     // ✅ Mettre à jour une map
     public void mettreAJourMap(Long id_map, int ligne, int colonne, String cheminImage) {
-        String sql = "UPDATE maps SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        String sql = "UPDATE map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
         jdbcTemplate.update(sql, ligne, colonne, cheminImage, id_map);
     }
 
     // ✅ Supprimer une map
     public void supprimerMap(Long id_map) {
-        String sql = "DELETE FROM maps WHERE id_map = ?";
+        String sql = "DELETE FROM map WHERE id_map = ?";
         jdbcTemplate.update(sql, id_map);
     }
 }
