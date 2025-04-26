@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/zombies")
+@RequestMapping("/zombies")
 public class ZombieController {
 
     private final ZombieService zombieService;

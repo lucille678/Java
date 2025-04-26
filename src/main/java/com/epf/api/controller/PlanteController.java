@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/plantes")
+@RequestMapping("/plantes")
 public class PlanteController {
 
     private final PlanteService planteService;
@@ -47,7 +47,7 @@ public class PlanteController {
     }
 
     // ✅ Récupérer une plante par ID
-    @GetMapping("/{id}")
+    @GetMapping("/plantes/{id}")
     public ResponseEntity<PlanteDTO> trouverPlanteParId(@PathVariable int id) {
         try {
             return ResponseEntity.ok(
@@ -59,7 +59,7 @@ public class PlanteController {
     }
 
     // ✅ Mettre à jour une plante
-    @PutMapping("/{id}")
+    @PutMapping("/plantes/{id}")
     public ResponseEntity<String> mettreAJourPlante(@PathVariable long id, @RequestBody PlanteDTO planteDTO) {
         if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
             return ResponseEntity.badRequest().body("Le nom de la plante est obligatoire.");
@@ -76,7 +76,7 @@ public class PlanteController {
     }
 
     // ✅ Supprimer une plante
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/plantes/{id}")
     public ResponseEntity<String> supprimerPlante(@PathVariable long id) {
         try {
             planteService.supprimer(id);

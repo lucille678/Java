@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/maps")
+@RequestMapping("/maps")
 public class MapsController {
 
     private final MapsService mapsService;
@@ -50,7 +50,7 @@ public class MapsController {
     }
 
     // ✅ Récupérer une map par ID
-    @GetMapping("/{id}")
+    @GetMapping("/maps/{id}")
     public ResponseEntity<MapsDTO> trouverMapParId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(
@@ -62,7 +62,7 @@ public class MapsController {
     }
 
     // ✅ Supprimer une map
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/maps/{id}")
     public ResponseEntity<String> supprimerMap(@PathVariable Long id) {
         try {
             mapsService.supprimer(id);

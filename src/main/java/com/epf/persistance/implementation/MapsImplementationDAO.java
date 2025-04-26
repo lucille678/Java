@@ -2,55 +2,64 @@ package com.epf.persistance.implementation;
 
 import com.epf.persistance.Maps;
 import com.epf.persistance.dao.MapsDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class MapsImplementationDAO implements MapsDAO {
-
+public class MapsImplementationDAO {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public MapsImplementationDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final RowMapper<Maps> mapsRowMapper = (rs, rowNum) -> new Maps(
-            rs.getLong("id_map"), // Correction : Utilisation de getLong
-            rs.getInt("ligne"),
-            rs.getInt("colonne"),
-            rs.getString("chemin_image")
-    );
-
-    @Override
-    public void ajouterMap(Maps map) {
-        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, map.getLigne(), map.getColonne(), map.getChemin_image());
-    }
-
-    @Override
     public List<Maps> listerMaps() {
         String sql = "SELECT * FROM map";
-        return jdbcTemplate.query(sql, mapsRowMapper);
+        return jdbcTemplate.query(sql, (rs, rowNum) ->
+            new Maps(
+                rs.getLong("id_map"),
+                rs.getInt("ligne"),
+                rs.getInt("colonne"),
+                rs.getString("chemin_image")
+            )
+        );
     }
 
-    @Override
-    public Maps trouverParId(long id) { // Correction : Utilisation de long
+    public Maps trouverParId(Long id) {
         String sql = "SELECT * FROM map WHERE id_map = ?";
-        return jdbcTemplate.queryForObject(sql, mapsRowMapper, id);
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) ->
+                new Maps(
+                    rs.getLong("id_map"),
+                    rs.getInt("ligne"),
+                    rs.getInt("colonne"),
+                    rs.getString("chemin_image")
+                )
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
-    @Override
-    public void mettreAJour(Maps map) {
-        String sql = "UPDATE map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
-        jdbcTemplate.update(sql, map.getLigne(), map.getColonne(), map.getChemin_image(), map.getId_map());
+    public void ajouterMap(Maps map) {
+        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, 
+            map.getLigne(),
+            map.getColonne(),
+            map.getChemin_image()
+        );
     }
 
-    @Override
-    public void supprimer(long id) { // Correction : Utilisation de long
+    public void supprimer(Long id) {
         String sql = "DELETE FROM map WHERE id_map = ?";
-        jdbcTemplate.update(sql, id);
+        int result = jdbcTemplate.update(sql, id);
+        if (result == 0) {
+            throw new EmptyResultDataAccessException(1);
+        }
     }
 }
