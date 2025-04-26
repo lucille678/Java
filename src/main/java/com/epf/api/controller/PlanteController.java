@@ -57,12 +57,9 @@ public class PlanteController {
 
     // ✅ Mettre à jour une plante
     @PutMapping("/{id}")
-    public ResponseEntity<String> mettreAJourPlante(@PathVariable long id, @RequestBody PlanteDTO planteDTO) {
+    public ResponseEntity<String> mettreAJourPlante(@PathVariable("id") long id, @RequestBody PlanteDTO planteDTO) {
         if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
             return ResponseEntity.badRequest().body("Le nom de la plante est obligatoire.");
-        }
-        if (planteDTO.getPointDeVie() <= 0) {
-            return ResponseEntity.badRequest().body("Les points de vie doivent être supérieurs à 0.");
         }
         if (planteDTO.getCout() <= 0) {
             return ResponseEntity.badRequest().body("Le coût doit être supérieur à 0.");
