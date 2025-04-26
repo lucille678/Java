@@ -64,7 +64,7 @@ public class PlanteController {
         if (planteDTO.getCout() <= 0) {
             return ResponseEntity.badRequest().body("Le coût doit être supérieur à 0.");
         }
-        planteDTO.setId(id);
+        planteDTO.setId_plante(id);
         planteService.mettreAJour(planteDTO.toModel());
         return ResponseEntity.ok("Plante mise à jour avec succès !");
     }
