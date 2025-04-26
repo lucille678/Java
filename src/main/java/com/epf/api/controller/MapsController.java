@@ -73,13 +73,30 @@ public class MapsController {
     }
 
     // ✅ Supprimer une map
-    @DeleteMapping("/{id}")  // Enlever le préfixe /maps/
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> supprimerMap(@PathVariable("id") Long id) {
         try {
-            mapsService.supprimer(id);
-            return ResponseEntity.ok("Map supprimée avec succès !");
+            // Vérifier d'abord si la map existe
+            if (mapsService.trouverParId(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            
+            try {
+                mapsService.supprimer(id);
+                return ResponseEntity.ok("Map supprimée avec succès !");
+            } catch (Exception e) {
+                // Check for foreign key constraint violation
+                if (e.getMessage().contains("foreign key constraint")) {
+                    return ResponseEntity.status(409)  // HTTP 409 Conflict
+                        .body("Impossible de supprimer la map car elle est utilisée par des zombies. " +
+                            "Supprimez d'abord les zombies associés.");
+                }
+                throw e;  // Re-throw if it's a different error
+            }
         } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            e.printStackTrace();
+            return ResponseEntity.status(500)
+                .body("Erreur lors de la suppression de la map: " + e.getMessage());
         }
     }
 }

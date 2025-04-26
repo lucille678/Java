@@ -71,12 +71,29 @@ public class PlanteController {
 
     // ✅ Supprimer une plante
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> supprimerPlante(@PathVariable long id) {
+    public ResponseEntity<String> supprimerPlante(@PathVariable("id") long id) {
         try {
-            planteService.supprimer(id);
-            return ResponseEntity.ok("Plante supprimée avec succès !");
+            // Vérifier d'abord si la plante existe
+            if (planteService.trouverParId(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            
+            try {
+                planteService.supprimer(id);
+                return ResponseEntity.ok("Plante supprimée avec succès !");
+            } catch (Exception e) {
+                // Vérifier s'il y a une violation de contrainte de clé étrangère
+                if (e.getMessage().contains("foreign key constraint")) {
+                    return ResponseEntity.status(409)  // HTTP 409 Conflict
+                        .body("Impossible de supprimer la plante car elle est utilisée dans une partie. " +
+                            "Supprimez d'abord les parties associées.");
+                }
+                throw e;  // Re-throw if it's a different error
+            }
         } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            e.printStackTrace();
+            return ResponseEntity.status(500)
+                .body("Erreur lors de la suppression de la plante: " + e.getMessage());
         }
     }
 }
