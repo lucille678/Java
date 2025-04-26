@@ -61,6 +61,17 @@ public class MapsController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<String> mettreAJourMap(@PathVariable Long id, @RequestBody MapsDTO mapsDTO) {
+        try {
+            mapsDTO.setId_map(id);  // Important: mettre à jour l'ID
+            mapsService.mettreAJour(mapsDTO.toModel());
+            return ResponseEntity.ok("Map mise à jour avec succès !");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erreur lors de la mise à jour: " + e.getMessage());
+        }
+    }
+
     // ✅ Supprimer une map
     @DeleteMapping("/maps/{id}")
     public ResponseEntity<String> supprimerMap(@PathVariable Long id) {

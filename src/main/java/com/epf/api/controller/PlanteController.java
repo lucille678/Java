@@ -26,9 +26,6 @@ public class PlanteController {
         if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
             return ResponseEntity.badRequest().body("Le nom de la plante est obligatoire.");
         }
-        if (planteDTO.getPointDeVie() <= 0) {
-            return ResponseEntity.badRequest().body("Les points de vie doivent être supérieurs à 0.");
-        }
         if (planteDTO.getCout() <= 0) {
             return ResponseEntity.badRequest().body("Le coût doit être supérieur à 0.");
         }
@@ -47,7 +44,7 @@ public class PlanteController {
     }
 
     // ✅ Récupérer une plante par ID
-    @GetMapping("/plantes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PlanteDTO> trouverPlanteParId(@PathVariable int id) {
         try {
             return ResponseEntity.ok(
@@ -59,7 +56,7 @@ public class PlanteController {
     }
 
     // ✅ Mettre à jour une plante
-    @PutMapping("/plantes/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> mettreAJourPlante(@PathVariable long id, @RequestBody PlanteDTO planteDTO) {
         if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
             return ResponseEntity.badRequest().body("Le nom de la plante est obligatoire.");
@@ -76,7 +73,7 @@ public class PlanteController {
     }
 
     // ✅ Supprimer une plante
-    @DeleteMapping("/plantes/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> supprimerPlante(@PathVariable long id) {
         try {
             planteService.supprimer(id);
