@@ -50,8 +50,8 @@ public class MapsController {
     }
 
     // ✅ Récupérer une map par ID
-    @GetMapping("/maps/{id}")
-    public ResponseEntity<MapsDTO> trouverMapParId(@PathVariable Long id) {
+    @GetMapping("/{id}")  // Enlever le préfixe /maps/
+    public ResponseEntity<MapsDTO> trouverMapParId(@PathVariable("id") Long id) {
         try {
             return ResponseEntity.ok(
                     MapsDTO.fromModel(mapsService.trouverParId(id))
@@ -62,7 +62,7 @@ public class MapsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> mettreAJourMap(@PathVariable Long id, @RequestBody MapsDTO mapsDTO) {
+    public ResponseEntity<String> mettreAJourMap(@PathVariable("id") Long id, @RequestBody MapsDTO mapsDTO) {
         try {
             mapsDTO.setId_map(id);  // Important: mettre à jour l'ID
             mapsService.mettreAJour(mapsDTO.toModel());
@@ -73,8 +73,8 @@ public class MapsController {
     }
 
     // ✅ Supprimer une map
-    @DeleteMapping("/maps/{id}")
-    public ResponseEntity<String> supprimerMap(@PathVariable Long id) {
+    @DeleteMapping("/{id}")  // Enlever le préfixe /maps/
+    public ResponseEntity<String> supprimerMap(@PathVariable("id") Long id) {
         try {
             mapsService.supprimer(id);
             return ResponseEntity.ok("Map supprimée avec succès !");
