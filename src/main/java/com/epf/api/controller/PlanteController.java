@@ -20,7 +20,7 @@ public class PlanteController {
         this.planteService = planteService;
     }
 
-    // ✅ Ajouter une plante
+    // Ajouter une plante
     @PostMapping
     public ResponseEntity<String> ajouterPlante(@RequestBody PlanteDTO planteDTO) {
         if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
@@ -33,7 +33,7 @@ public class PlanteController {
         return ResponseEntity.ok("Plante ajoutée avec succès !");
     }
 
-    // ✅ Lister toutes les plantes
+    // Lister toutes les plantes
     @GetMapping
     public ResponseEntity<List<PlanteDTO>> listerPlantes() {
         List<PlanteDTO> plantes = planteService.listerPlantes()
@@ -43,7 +43,7 @@ public class PlanteController {
         return ResponseEntity.ok(plantes);
     }
 
-    // ✅ Récupérer une plante par ID
+    // Récupérer une plante par ID
     @GetMapping("/{id}")
     public ResponseEntity<PlanteDTO> trouverPlanteParId(@PathVariable int id) {
         try {
@@ -55,7 +55,7 @@ public class PlanteController {
         }
     }
 
-    // ✅ Mettre à jour une plante
+    // Mettre à jour une plante
     @PutMapping("/{id}")
     public ResponseEntity<String> mettreAJourPlante(@PathVariable("id") long id, @RequestBody PlanteDTO planteDTO) {
         if (planteDTO.getNom() == null || planteDTO.getNom().isEmpty()) {
@@ -69,11 +69,10 @@ public class PlanteController {
         return ResponseEntity.ok("Plante mise à jour avec succès !");
     }
 
-    // ✅ Supprimer une plante
+    // Supprimer une plante
     @DeleteMapping("/{id}")
     public ResponseEntity<String> supprimerPlante(@PathVariable("id") long id) {
         try {
-            // Vérifier d'abord si la plante existe
             if (planteService.trouverParId(id) == null) {
                 return ResponseEntity.notFound().build();
             }
@@ -82,13 +81,12 @@ public class PlanteController {
                 planteService.supprimer(id);
                 return ResponseEntity.ok("Plante supprimée avec succès !");
             } catch (Exception e) {
-                // Vérifier s'il y a une violation de contrainte de clé étrangère
                 if (e.getMessage().contains("foreign key constraint")) {
-                    return ResponseEntity.status(409)  // HTTP 409 Conflict
+                    return ResponseEntity.status(409)  
                         .body("Impossible de supprimer la plante car elle est utilisée dans une partie. " +
                             "Supprimez d'abord les parties associées.");
                 }
-                throw e;  // Re-throw if it's a different error
+                throw e;  
             }
         } catch (Exception e) {
             e.printStackTrace();

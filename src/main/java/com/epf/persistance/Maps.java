@@ -6,10 +6,8 @@ public class Maps {
     private Integer colonne;
     private String chemin_image;
 
-    // Constructeur vide
     public Maps() {}
 
-    // Constructeur avec tous les attributs
     public Maps(Long id_map, Integer ligne, Integer colonne, String chemin_image) {
         this.id_map = id_map;
         this.ligne = ligne;
@@ -17,7 +15,6 @@ public class Maps {
         this.chemin_image = chemin_image;
     }
 
-    // Getters et Setters
     public Long getId_map() { return id_map; }
     public void setId_map(Long id_map) { this.id_map = id_map; }
 

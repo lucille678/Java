@@ -8,13 +8,13 @@ public class ZombieDTO {
     private Long id_zombie;
     private String nom;
     private Integer point_de_vie;
-    private BigDecimal attaque_par_seconde; // Correction ici
+    private BigDecimal attaque_par_seconde; 
     private Integer degat_attaque;
-    private BigDecimal vitesse_de_deplacement; // Correction ici
+    private BigDecimal vitesse_de_deplacement; 
     private String chemin_image;
     private Long id_map;
 
-    // Constructeur vide pour Spring
+    
     public ZombieDTO() {
     }
 
@@ -31,20 +31,20 @@ public class ZombieDTO {
         this.id_map = id_map;
     }
 
-    // Convertit un modèle en DTO
+   
     public static ZombieDTO fromModel(Zombie zombie) {
         return new ZombieDTO(zombie.getId_zombie(), zombie.getNom(), zombie.getPoint_de_vie(),
                 zombie.getAttaque_par_seconde(), zombie.getDegat_attaque(), zombie.getVitesse_de_deplacement(),
                 zombie.getChemin_image(), zombie.getId_map());
     }
 
-    // Convertit un DTO en modèle
+    
     public Zombie toModel() {
         return new Zombie(id_zombie, nom, point_de_vie, attaque_par_seconde, degat_attaque, vitesse_de_deplacement,
                 chemin_image, id_map);
     }
 
-    // Getters et Setters
+    
     public Long getId_zombie() { return id_zombie; }
     public void setId_zombie(Long id_zombie) { this.id_zombie = id_zombie; }
 

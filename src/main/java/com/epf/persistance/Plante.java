@@ -14,7 +14,7 @@ public class Plante {
     private String effet;
     private String chemin_image;
 
-    public Plante() {} // Constructeur vide requis par Spring
+    public Plante() {} 
 
     public Plante(long id_plante, String nom, int point_de_vie, BigDecimal attaque_par_seconde, int degat_attaque,
                   int cout, BigDecimal soleil_par_seconde, String effet, String chemin_image) {
@@ -29,7 +29,6 @@ public class Plante {
         this.chemin_image = chemin_image;
     }
 
-    // Getters et Setters
     public long getId_plante() {
         return id_plante;
     }

@@ -14,10 +14,10 @@ public class PlanteMapper implements RowMapper<Plante> {
                 rs.getLong("id_plante"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
-                rs.getBigDecimal("attaque_par_seconde"), // Correction ici
+                rs.getBigDecimal("attaque_par_seconde"), 
                 rs.getInt("degat_attaque"),
                 rs.getInt("cout"),
-                rs.getBigDecimal("soleil_par_seconde"), // Correction ici
+                rs.getBigDecimal("soleil_par_seconde"), 
                 rs.getString("effet"),
                 rs.getString("chemin_image")
         );

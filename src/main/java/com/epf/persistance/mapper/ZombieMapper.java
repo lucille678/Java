@@ -14,11 +14,11 @@ public class ZombieMapper implements RowMapper<Zombie> {
                 rs.getLong("id_zombie"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
-                rs.getBigDecimal("attaque_par_seconde"), // Correction ici
+                rs.getBigDecimal("attaque_par_seconde"),
                 rs.getInt("degat_attaque"),
-                rs.getBigDecimal("vitesse_de_deplacement"), // Correction ici
+                rs.getBigDecimal("vitesse_de_deplacement"),
                 rs.getString("chemin_image"),
-                rs.getObject("id_map") != null ? rs.getLong("id_map") : null // Gestion de la valeur null
+                rs.getObject("id_map") != null ? rs.getLong("id_map") : null 
         );
     }
 }

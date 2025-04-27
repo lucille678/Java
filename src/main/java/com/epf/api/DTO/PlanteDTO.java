@@ -8,10 +8,10 @@ public class PlanteDTO {
     private long id;
     private String nom;
     private int pointDeVie;
-    private BigDecimal attaqueParSeconde; // Correction ici
+    private BigDecimal attaqueParSeconde; 
     private int degatAttaque;
     private int cout;
-    private BigDecimal soleilParSeconde; // Correction ici
+    private BigDecimal soleilParSeconde; 
     private String effet;
     private String cheminImage;
 
@@ -31,6 +31,7 @@ public class PlanteDTO {
     }
 
     public static PlanteDTO fromModel(Plante plante) {
+        
         return new PlanteDTO(
                 plante.getId_plante(),
                 plante.getNom(),

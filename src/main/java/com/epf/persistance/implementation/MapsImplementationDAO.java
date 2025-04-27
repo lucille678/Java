@@ -62,4 +62,18 @@ public class MapsImplementationDAO {
             throw new EmptyResultDataAccessException(1);
         }
     }
+
+    public void mettreAJour(Maps map) {
+        String sql = "UPDATE map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        int rowsAffected = jdbcTemplate.update(sql, 
+            map.getLigne(), 
+            map.getColonne(), 
+            map.getChemin_image(), 
+            map.getId_map()
+        );
+        
+        if (rowsAffected == 0) {
+            throw new EmptyResultDataAccessException("Aucune map trouvée avec l'ID : " + map.getId_map(), 1);
+        }
+    }
 }

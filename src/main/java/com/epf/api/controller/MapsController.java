@@ -24,7 +24,7 @@ public class MapsController {
         this.zombieService = zombieService;
     }
 
-    // ✅ Ajouter une map
+    // Ajouter une map
     @PostMapping
     public ResponseEntity<String> ajouterMap(@RequestBody MapsDTO mapsDTO) {
         if (mapsDTO.getLigne() <= 0 || mapsDTO.getColonne() <= 0) {
@@ -37,7 +37,7 @@ public class MapsController {
         return ResponseEntity.ok("Map ajoutée avec succès !");
     }
 
-     // ✅ Lister toutes les maps
+     // Lister toutes les maps
     @GetMapping
     public ResponseEntity<?> listerMaps() {
         try {
@@ -47,14 +47,14 @@ public class MapsController {
                     .collect(Collectors.toList());
             return ResponseEntity.ok(maps);
         } catch (Exception e) {
-            e.printStackTrace(); // Pour le débogage
+            e.printStackTrace(); 
             return ResponseEntity.status(500)
                 .body("Erreur lors de la récupération des maps: " + e.getMessage());
         }
     }
 
-    // ✅ Récupérer une map par ID
-    @GetMapping("/{id}")  // Enlever le préfixe /maps/
+    // Récupérer une map par ID
+    @GetMapping("/{id}")  
     public ResponseEntity<MapsDTO> trouverMapParId(@PathVariable("id") Long id) {
         try {
             return ResponseEntity.ok(
@@ -68,7 +68,7 @@ public class MapsController {
     @PutMapping("/{id}")
     public ResponseEntity<String> mettreAJourMap(@PathVariable("id") Long id, @RequestBody MapsDTO mapsDTO) {
         try {
-            mapsDTO.setId_map(id);  // Important: mettre à jour l'ID
+            mapsDTO.setId_map(id);  
             mapsService.mettreAJour(mapsDTO.toModel());
             return ResponseEntity.ok("Map mise à jour avec succès !");
         } catch (Exception e) {
@@ -76,7 +76,7 @@ public class MapsController {
         }
     }
 
-    // ✅ Supprimer une map
+    // Supprimer une map
     @DeleteMapping("/{id}")
     public ResponseEntity<String> supprimerMap(@PathVariable("id") Long id) {
         try {
@@ -86,13 +86,13 @@ public class MapsController {
             }
             
             try {
-                // Supprimer d'abord tous les zombies associés à cette map
+                // Supprimer tous les zombies associés à cette map
                 List<Zombie> zombiesAssocies = zombieService.trouverParMap(id);
                 for (Zombie zombie : zombiesAssocies) {
                     zombieService.supprimer(zombie.getId_zombie());
                 }
                 
-                // Puis supprimer la map
+                // Supprimer la map
                 mapsService.supprimer(id);
                 return ResponseEntity.ok("Map et zombies associés supprimés avec succès !");
             } catch (Exception e) {

@@ -17,9 +17,8 @@ public class PlanteImplementationDAO implements PlanteDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Mapper pour convertir une ligne SQL en objet Plante
     private final RowMapper<Plante> planteRowMapper = (rs, rowNum) -> new Plante(
-            rs.getLong("id_plante"),   //jai mis long a la place de int
+            rs.getLong("id_plante"),   
             rs.getString("nom"),
             rs.getInt("point_de_vie"),
             rs.getBigDecimal("attaque_par_seconde"),

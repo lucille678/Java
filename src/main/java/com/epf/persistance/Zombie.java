@@ -6,16 +6,15 @@ public class Zombie {
     private Long id_zombie;
     private String nom;
     private Integer point_de_vie;
-    private BigDecimal attaque_par_seconde; // Changement ici
+    private BigDecimal attaque_par_seconde; 
     private Integer degat_attaque;
-    private BigDecimal vitesse_de_deplacement; // Changement ici
+    private BigDecimal vitesse_de_deplacement;
     private String chemin_image;
-    private Long id_map; // Peut être null, donc Long
+    private Long id_map;
 
-    // Constructeur vide
+
     public Zombie() {}
 
-    // Constructeur avec tous les attributs
     public Zombie(Long id_zombie, String nom, Integer point_de_vie, BigDecimal attaque_par_seconde,
                   Integer degat_attaque, BigDecimal vitesse_de_deplacement, String chemin_image, Long id_map) {
         this.id_zombie = id_zombie;
@@ -28,7 +27,7 @@ public class Zombie {
         this.id_map = id_map;
     }
 
-    // Getters et Setters
+
     public Long getId_zombie() { return id_zombie; }
     public void setId_zombie(Long id_zombie) { this.id_zombie = id_zombie; }
 

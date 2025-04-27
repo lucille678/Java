@@ -2,7 +2,6 @@ com\epf\api\DTO\MapsDTO.class
 com\epf\persistance\implementation\ZombieImplementationDAO.class
 com\epf\persistance\mapper\ZombieMapper.class
 com\epf\core\service\MapsService.class
-com\epf\persistance\PlanteRepo.class
 com\epf\persistance\Plante.class
 com\epf\persistance\dao\MapsDAO.class
 com\epf\api\DTO\PlanteDTO.class
@@ -10,7 +9,6 @@ com\epf\persistance\mapper\MapsMapper.class
 com\epf\api\controller\PlanteController.class
 com\epf\persistance\implementation\MapsImplementationDAO.class
 com\epf\api\controller\ZombieController.class
-com\epf\persistance\MapsRepo.class
 com\epf\api\controller\MapsController.class
 com\epf\core\service\ZombieService.class
 com\epf\persistance\Zombie.class
@@ -19,7 +17,6 @@ com\epf\config\WebConfig.class
 com\epf\persistance\dao\ZombieDAO.class
 com\epf\persistance\mapper\PlanteMapper.class
 com\epf\persistance\dao\PlanteDAO.class
-com\epf\persistance\ZombieRepo.class
 com\epf\core\service\PlanteService.class
 com\epf\persistance\implementation\PlanteImplementationDAO.class
 com\epf\persistance\DBConfig.class

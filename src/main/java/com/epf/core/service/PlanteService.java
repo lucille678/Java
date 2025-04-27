@@ -22,7 +22,7 @@ public class PlanteService {
     public Plante trouverParId(long id) {
         try {
             logger.info("Recherche de la plante avec ID : {}", id);
-            return planteDAO.trouverParId(id); // Assurez-vous que cette méthode accepte un long dans le DAO.
+            return planteDAO.trouverParId(id); 
         } catch (Exception e) {
             logger.error("Erreur lors de la récupération de la plante avec ID : {}", id, e);
             throw new RuntimeException("Erreur lors de la récupération de la plante avec ID : " + id, e);
@@ -31,7 +31,7 @@ public class PlanteService {
 
     public void supprimer(long id) {
         logger.info("Suppression de la plante avec ID : {}", id);
-        planteDAO.supprimer(id); // Assurez-vous que cette méthode accepte un long dans le DAO.
+        planteDAO.supprimer(id);
     }
 
     public void ajouterPlante(Plante plante) {
@@ -39,12 +39,12 @@ public class PlanteService {
             throw new IllegalArgumentException("Le nom de la plante est obligatoire.");
         }
         logger.info("Ajout d'une plante : {}", plante.getNom());
-        planteDAO.ajouterPlante(plante); // Assurez-vous que cette méthode existe dans le DAO.
+        planteDAO.ajouterPlante(plante); 
     }
 
     public List<Plante> listerPlantes() {
         logger.info("Récupération de toutes les plantes.");
-        return planteDAO.listerPlantes(); // Assurez-vous que cette méthode existe dans le DAO.
+        return planteDAO.listerPlantes(); 
     }
 
     public void mettreAJour(Plante plante) {
@@ -52,7 +52,7 @@ public class PlanteService {
             throw new IllegalArgumentException("L'ID de la plante est requis pour la mise à jour.");
         }
         logger.info("Mise à jour de la plante avec ID : {}", plante.getId_plante());
-        planteDAO.mettreAJour(plante); // Assurez-vous que cette méthode existe dans le DAO.
+        planteDAO.mettreAJour(plante); 
     }
 }
 

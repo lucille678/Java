@@ -11,17 +11,15 @@ import javax.sql.DataSource;
 
 public class DBConfig {
 
-    // Déclaration du Bean DataSource
     @Bean
     public DataSource initDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/pvz"); // URL
-        dataSource.setUsername("epf");  // utilisateur
-        dataSource.setPassword("mot_de_passe"); // mot de passe
+        dataSource.setUrl("jdbc:mysql://localhost:3306/pvz"); 
+        dataSource.setUsername("epf"); 
+        dataSource.setPassword("mot_de_passe"); 
         return dataSource;
     }
 
-    // Déclaration du Bean JdbcTemplate
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);

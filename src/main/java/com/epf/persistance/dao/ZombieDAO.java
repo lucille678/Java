@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface ZombieDAO {
     void ajouterZombie(Zombie zombie);         // CREATE
-    List<Zombie> listerZombies();              // READ (All)
-    Zombie trouverParId(Long id);              // READ (One) avec Long pour l'ID
+    List<Zombie> listerZombies();              // READ (tout)
+    Zombie trouverParId(Long id);              // READ (un seul)
     void mettreAJour(Zombie zombie);           // UPDATE
     void supprimer(Long id);                   // DELETE
-    List<Zombie> listerZombiesParMap(Long mapId); // ID_MAP est un Long
+    List<Zombie> listerZombiesParMap(Long mapId); 
 }
