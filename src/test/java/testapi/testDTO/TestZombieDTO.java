@@ -1,59 +1,44 @@
 package testapi.testDTO;
 
-import com.epf.persistance.Zombie;
 import com.epf.api.DTO.ZombieDTO;
+import com.epf.persistance.Zombie;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-
-class TestZombieDTO {
-    /*
-
-    @Test
-    void testFromModel() {
-        Zombie zombie = new Zombie(
-                1L,
-                "Zombie Sprinter",
-                90,
-                new BigDecimal("12.50"), // Correction ici
-                50,
-                new BigDecimal("5.25"), // Correction ici
-                "path/image_zombie_sprinter.jpeg",
-                2L
-        );
-        ZombieDTO dto = ZombieDTO.fromModel(zombie);
-
-        assertEquals(1L, dto.getId_zombie());
-        assertEquals("Zombie Sprinter", dto.getNom());
-        assertEquals(90, dto.getPoint_de_vie());
-        assertEquals(new BigDecimal("12.50"), dto.getAttaque_par_seconde()); // Correction ici
-        assertEquals(50, dto.getDegat_attaque());
-        assertEquals(new BigDecimal("5.25"), dto.getVitesse_de_deplacement()); // Correction ici
-        assertEquals("path/image_zombie_sprinter.jpeg", dto.getChemin_image());
-        assertEquals(2L, dto.getId_map());
-    }
+public class TestZombieDTO {
 
     @Test
-    void testToModel() {
-        ZombieDTO dto = new ZombieDTO(
-                2L,
-                "Zombie Armé",
-                100,
-                new BigDecimal("20.00"), // Correction ici
-                200,
-                new BigDecimal("2.75"), // Correction ici
-                "path/image_zombie_arme.jpeg",
-                1L
-        );
+    public void testToModel() {
+        // Arrange
+        ZombieDTO dto = new ZombieDTO();
+        dto.setId_zombie(1L);
+        dto.setNom("Test Zombie");
+        dto.setPoint_de_vie(100);
+
+        // Act
         Zombie zombie = dto.toModel();
 
-        assertEquals(2L, zombie.getId_zombie());
-        assertEquals("Zombie Armé", zombie.getNom());
-        assertEquals(100, zombie.getPoint_de_vie());
-        assertEquals(new BigDecimal("20.00"), zombie.getAttaque_par_seconde()); // Correction ici
-        assertEquals(200, zombie.getDegat_attaque());
-        assertEquals(new BigDecimal("2.75"), zombie.getVitesse_de_deplacement()); // Correction ici
-        assertEquals("path/image_zombie_arme.jpeg", zombie.getChemin_image());
-        assertEquals(1L, zombie.getId_map());
+        // Assert
+        assertEquals(dto.getId_zombie(), zombie.getId_zombie());
+        assertEquals(dto.getNom(), zombie.getNom());
+        assertEquals(dto.getPoint_de_vie(), zombie.getPoint_de_vie());
     }
-    */
+
+    @Test
+    public void testFromModel() {
+        // Arrange
+        Zombie zombie = new Zombie();
+        zombie.setId_zombie(1L);
+        zombie.setNom("Test Zombie");
+        zombie.setPoint_de_vie(100);
+
+        // Act
+        ZombieDTO dto = ZombieDTO.fromModel(zombie);
+
+        // Assert
+        assertEquals(zombie.getId_zombie(), dto.getId_zombie());
+        assertEquals(zombie.getNom(), dto.getNom());
+        assertEquals(zombie.getPoint_de_vie(), dto.getPoint_de_vie());
+    }
 }
 

@@ -5,6 +5,7 @@ testapi\testcontroller\TestPlanteController.class
 testcore\testservice\TestZombieService.class
 testpersistance\TestPlante.class
 testpersistance\testdao\TestDAOZombie.class
+testapi\testDTO\TestPlanteDTO.class
 testpersistance\testdao\TestDAOMaps.class
 testpersistance\testdao\TestDAOPlante.class
 testapi\testDTO\TestMapsDTO.class
