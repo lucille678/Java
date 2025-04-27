@@ -1,80 +1,99 @@
 package testpersistance;
 
 import com.epf.persistance.Zombie;
-
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.math.BigDecimal;
 
 public class TestZombie {
-    /*
+    
+    private Zombie zombie;
+
+    @Before
+    public void setUp() {
+        zombie = new Zombie();
+    }
 
     @Test
-    void testConstructeurEtGetters() {
-        // Création d'un zombie avec le constructeur
-        Zombie zombie = new Zombie(
-                1L,
-                "Zombie Test",
-                100,
-                new BigDecimal("10.50"),
-                50,
-                new BigDecimal("2.75"),
-                "path/image_zombie_test.jpeg",
-                2L
+    public void testConstructeurVide() {
+        assertNotNull("L'instance ne devrait pas être nulle", zombie);
+        assertNull(zombie.getId_zombie());
+        assertNull(zombie.getNom());
+        assertNull(zombie.getPoint_de_vie());
+        assertNull(zombie.getAttaque_par_seconde());
+        assertNull(zombie.getDegat_attaque());
+        assertNull(zombie.getVitesse_de_deplacement());
+        assertNull(zombie.getChemin_image());
+        assertNull(zombie.getId_map());
+    }
+
+    @Test
+    public void testConstructeurComplet() {
+        zombie = new Zombie(
+            1L, 
+            "Zombie de base",
+            100,
+            new BigDecimal("1.0"),
+            20,
+            new BigDecimal("0.5"),
+            "zombie/basic.png",
+            1L
         );
-
-        // Vérification des getters
-        assertEquals(1L, zombie.getId_zombie());
-        assertEquals("Zombie Test", zombie.getNom());
-        assertEquals(100, zombie.getPoint_de_vie());
-        assertEquals(new BigDecimal("10.50"), zombie.getAttaque_par_seconde());
-        assertEquals(50, zombie.getDegat_attaque());
-        assertEquals(new BigDecimal("2.75"), zombie.getVitesse_de_deplacement());
-        assertEquals("path/image_zombie_test.jpeg", zombie.getChemin_image());
-        assertEquals(2L, zombie.getId_map());
+        
+        assertEquals(Long.valueOf(1L), zombie.getId_zombie());
+        assertEquals("Zombie de base", zombie.getNom());
+        assertEquals(Integer.valueOf(100), zombie.getPoint_de_vie());
+        assertEquals(0, new BigDecimal("1.0").compareTo(zombie.getAttaque_par_seconde()));
+        assertEquals(Integer.valueOf(20), zombie.getDegat_attaque());
+        assertEquals(0, new BigDecimal("0.5").compareTo(zombie.getVitesse_de_deplacement()));
+        assertEquals("zombie/basic.png", zombie.getChemin_image());
+        assertEquals(Long.valueOf(1L), zombie.getId_map());
     }
 
     @Test
-    void testSetters() {
-        // Création d'un zombie vide
-        Zombie zombie = new Zombie();
+    public void testSettersEtGetters() {
+        zombie.setId_zombie(1L);
+        zombie.setNom("Zombie de base");
+        zombie.setPoint_de_vie(100);
+        zombie.setAttaque_par_seconde(new BigDecimal("1.0"));
+        zombie.setDegat_attaque(20);
+        zombie.setVitesse_de_deplacement(new BigDecimal("0.5"));
+        zombie.setChemin_image("zombie/basic.png");
+        zombie.setId_map(1L);
 
-        // Utilisation des setters
-        zombie.setId_zombie(2L);
-        zombie.setNom("Zombie Modifié");
-        zombie.setPoint_de_vie(120);
-        zombie.setAttaque_par_seconde(new BigDecimal("15.00"));
-        zombie.setDegat_attaque(60);
-        zombie.setVitesse_de_deplacement(new BigDecimal("3.50"));
-        zombie.setChemin_image("path/image_zombie_modified.jpeg");
-        zombie.setId_map(3L);
-
-        // Vérification des setters
-        assertEquals(2L, zombie.getId_zombie());
-        assertEquals("Zombie Modifié", zombie.getNom());
-        assertEquals(120, zombie.getPoint_de_vie());
-        assertEquals(new BigDecimal("15.00"), zombie.getAttaque_par_seconde());
-        assertEquals(60, zombie.getDegat_attaque());
-        assertEquals(new BigDecimal("3.50"), zombie.getVitesse_de_deplacement());
-        assertEquals("path/image_zombie_modified.jpeg", zombie.getChemin_image());
-        assertEquals(3L, zombie.getId_map());
+        assertEquals(Long.valueOf(1L), zombie.getId_zombie());
+        assertEquals("Zombie de base", zombie.getNom());
+        assertEquals(Integer.valueOf(100), zombie.getPoint_de_vie());
+        assertEquals(0, new BigDecimal("1.0").compareTo(zombie.getAttaque_par_seconde()));
+        assertEquals(Integer.valueOf(20), zombie.getDegat_attaque());
+        assertEquals(0, new BigDecimal("0.5").compareTo(zombie.getVitesse_de_deplacement()));
+        assertEquals("zombie/basic.png", zombie.getChemin_image());
+        assertEquals(Long.valueOf(1L), zombie.getId_map());
     }
 
     @Test
-    void testToString() {
-        // Création d'un zombie
-        Zombie zombie = new Zombie(
-                1L,
-                "Zombie String",
-                80,
-                new BigDecimal("8.00"),
-                40,
-                new BigDecimal("1.50"),
-                "path/image_zombie_string.jpeg",
-                null
-        );
+    public void testToString() {
+        zombie.setId_zombie(1L);
+        zombie.setNom("Zombie de base");
+        zombie.setPoint_de_vie(100);
+        zombie.setAttaque_par_seconde(new BigDecimal("1.0"));
+        zombie.setDegat_attaque(20);
+        zombie.setVitesse_de_deplacement(new BigDecimal("0.5"));
+        zombie.setChemin_image("zombie/basic.png");
+        zombie.setId_map(1L);
 
-        // Vérification de la méthode toString
-        String expected = "Zombie{id_zombie=1, nom='Zombie String', point_de_vie=80, attaque_par_seconde=8.00, " +
-                "degat_attaque=40, vitesse_de_deplacement=1.50, chemin_image='path/image_zombie_string.jpeg', id_map=null}";
-        assertEquals(expected, zombie.toString());
+        String expectedString = "Zombie{" +
+                "id_zombie=" + 1L +
+                ", nom='Zombie de base'" +
+                ", point_de_vie=" + 100 +
+                ", attaque_par_seconde=" + new BigDecimal("1.0") +
+                ", degat_attaque=" + 20 +
+                ", vitesse_de_deplacement=" + new BigDecimal("0.5") +
+                ", chemin_image='zombie/basic.png'" +
+                ", id_map=" + 1L +
+                '}';
+
+        assertEquals(expectedString, zombie.toString());
     }
-    */
 }
