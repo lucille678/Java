@@ -1,14 +1,12 @@
 testapi\controller\TestPlanteController.class
 testcore\testservice\TestMapsService.class
-testpersistance\TestDBConfig.class
-testpersistance\TestMaps.class
-testcore\testservice\TestZombieService.class
-testpersistance\TestPlanteRepo.class
-testpersistance\TestPlante.class
 testpersistance\testdao\TestDAOZombie.class
 testpersistance\testdao\TestDAOMaps.class
 testpersistance\testdao\TestDAOPlante.class
 testapi\testDTO\TestMapsDTO.class
+testpersistance\TestMaps.class
 testcore\testservice\TestPlanteService.class
 testpersistance\TestZombie.class
+testcore\testservice\TestZombieService.class
+testpersistance\TestPlante.class
 testapi\testDTO\TestZombieDTO.class
