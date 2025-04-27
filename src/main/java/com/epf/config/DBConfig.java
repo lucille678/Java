@@ -1,4 +1,4 @@
-package com.epf.persistance;
+package com.epf.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
